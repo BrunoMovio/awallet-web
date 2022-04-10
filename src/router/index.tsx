@@ -1,8 +1,9 @@
-import {Navigate} from "react-router-dom"
-import {Route, Routes} from "react-router-dom"
-import {ForgotPasswordPage} from "../modules/auth/forgot-password"
-import {NewPasswordPage} from "../modules/auth/forgot-password/new-password.page"
-import {LoginPage} from "../modules/auth/login"
+import { Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { ForgotPasswordPage } from "../modules/auth/forgot-password";
+import { NewPasswordPage } from "../modules/auth/forgot-password/new-password.page";
+import { LoginPage } from "../modules/auth/login";
+import { HomePage } from "../modules/home/dashboard";
 
 export const Router = () => {
   return (
@@ -13,7 +14,7 @@ export const Router = () => {
 
       <Route path="nova-senha" element={<NewPasswordPage />} />
 
-      <Route path="/" element={<Navigate to="login" replace />} />
+      <Route path="/" element={<HomePage />} />
     </Routes>
   );
-}
+};
