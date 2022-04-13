@@ -22,6 +22,7 @@ export const LoginPage = () => {
           initialValues={loginForm.initialValues}
           onSubmit={async (values, actions) => {
             actions.setSubmitting(true);
+            await new Promise(resolve => setTimeout(resolve, 800));
             try {
               navigate("/");
             } catch (err) {

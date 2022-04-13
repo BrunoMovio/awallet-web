@@ -1805,11 +1805,11 @@ export const walletData = {
       asset_name: "BPAC11",
       value: "2042.7",
     },
-    {
-      Date: "2021-08-19",
-      asset_type: "stock",
-      asset_name: "ITSA4",
-      value: "1540.7",
-    },
+    // {
+    //   Date: "2021-08-19",
+    //   asset_type: "stock",
+    //   asset_name: "ITSA4",
+    //   value: "1540.7",
+    // },
   ],
 };

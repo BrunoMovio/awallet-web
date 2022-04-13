@@ -5,6 +5,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
+import { PageHeading } from "../typography/page-heading.component";
 
 export const Appbar = () => {
   const navigate = useNavigate();
@@ -23,16 +24,33 @@ export const Appbar = () => {
         <Heading>aWallet</Heading>
       </HStack>
 
-      {location.pathname === '/' && (
-        <Button
-          alignSelf="flex-end"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Logout
-        </Button>
+    <>
+      
+      {location.pathname !== '/login' && location.pathname !== '/esqueci-senha' && location.pathname !== '/nova-senha' && (
+        <HStack>
+          {location.pathname === '/' && (
+            <Button px={8}  onClick={() => {
+              navigate("/carteira");
+            }}>Gerenciar carteira</Button>
+          )}
+          {location.pathname === '/carteira' && (
+            <Button px={8}  onClick={() => {
+              navigate("/");
+            }}>Ver relatório</Button>
+          )}
+          <Button
+            alignSelf="flex-end"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Logout
+          </Button>
+        </HStack>
       )}
+      
+    </>
+      
     </Flex>
   );
 };
