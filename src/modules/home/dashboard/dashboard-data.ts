@@ -1766,3 +1766,44 @@ export const dashboardData = {
     },
   },
 };
+
+export const walletData = {
+  "data": [
+    {
+      "Date": "2021-05-03",
+      "asset_type": "stock",
+      "asset_name": "ETER3",
+      "value": "2212.21"
+    },
+    {
+      "Date": "2021-05-03",
+      "asset_type": "stock",
+      "asset_name": "MOAR3",
+      "value": "2276.55"
+    },
+    {
+      "Date": "2021-05-03",
+      "asset_type": "stock",
+      "asset_name": "PATI3",
+      "value": "3559.14"
+    },
+    {
+      "Date": "2021-05-03",
+      "asset_type": "stock",
+      "asset_name": "PTBL3",
+      "value": "2018.25"
+    },
+    {
+      "Date": "2021-05-03",
+      "asset_type": "stock",
+      "asset_name": "RSUL4",
+      "value": "1446.27"
+    },
+    {
+      "Date": "2022-03-12",
+      "asset_type": "stock",
+      "asset_name": "BPAC11",
+      "value": "2012.28"
+    }
+  ]
+};

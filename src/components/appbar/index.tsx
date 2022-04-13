@@ -1,6 +1,6 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, HStack } from "@chakra-ui/layout";
-import { Heading } from "@chakra-ui/react";
+import { Button, Heading } from "@chakra-ui/react";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -22,18 +22,17 @@ export const Appbar = () => {
         <Image src={logo} h={10} />
         <Heading>aWallet</Heading>
       </HStack>
-      
-      {/* {user && (
+
+      {location.pathname === '/' && (
         <Button
           alignSelf="flex-end"
           onClick={() => {
-            logout();
             navigate("/login");
           }}
         >
           Logout
         </Button>
-      )} */}
+      )}
     </Flex>
   );
 };

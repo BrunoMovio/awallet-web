@@ -1,22 +1,21 @@
-import { useNavigate } from "react-router-dom";
 import { PageContainer } from "../../../components/page-container";
-import { useToast } from "@chakra-ui/toast";
 import { PageHeading } from "../../../components/typography/page-heading.component";
-import { dashboardData } from "./dashboard-data";
 import Plot from "react-plotly.js";
 import { PlotType } from "plotly.js";
 import { Card } from "../../../components/card";
 import { Flex } from "@chakra-ui/react";
-
-const cumulativeReturnsData = dashboardData.cumulative_returns.data[0];
-const cumulativeReturnsLayout = dashboardData.cumulative_returns.layout;
-
-const patrimonyData = dashboardData.patrimony.data[0];
-const patrimonyLayout = dashboardData.patrimony.layout;
+import { useGetPorfolioData } from "../../common/hooks/use-get-portfolio-data.hook";
+import { useEffect } from "react";
+import { LoadingState } from "../../../components/loading-state";
 
 export const HomePage = () => {
-  const toast = useToast();
-  const navigate = useNavigate();
+  const [fetch, result] = useGetPorfolioData();
+
+  useEffect(() => fetch(), []);
+
+  const cumulativeReturnsData = result.data?.cumulative_returns.data?.[0];
+
+  const patrimonyData = result.data?.patrimony?.data?.[0];
 
   return (
     <PageContainer>
@@ -28,28 +27,32 @@ export const HomePage = () => {
         justifyContent="space-evenly"
       >
         <Card>
-          <Plot
-            data={[
-              {
-                x: cumulativeReturnsData.x,
-                y: cumulativeReturnsData.y,
-                type: cumulativeReturnsData.type as PlotType,
-              },
-            ]}
-            layout={{ title: "Retorno cumulativo" }}
-          />
+          <LoadingState loading={result.loading} data={result.data}>
+            <Plot
+              data={[
+                {
+                  x: cumulativeReturnsData?.x,
+                  y: cumulativeReturnsData?.y,
+                  type: cumulativeReturnsData?.type as PlotType,
+                },
+              ]}
+              layout={{ title: "Retorno cumulativo" }}
+            />
+          </LoadingState>
         </Card>
         <Card>
-          <Plot
-            data={[
-              {
-                x: patrimonyData.x,
-                y: patrimonyData.y,
-                type: patrimonyData.type as PlotType,
-              },
-            ]}
-            layout={{ title: "Patrimônio" }}
-          />
+          <LoadingState loading={result.loading} data={result.data}>
+            <Plot
+              data={[
+                {
+                  x: patrimonyData?.x,
+                  y: patrimonyData?.y,
+                  type: patrimonyData?.type as PlotType,
+                },
+              ]}
+              layout={{ title: "Patrimônio" }}
+            />
+          </LoadingState>
         </Card>
       </Flex>
     </PageContainer>
