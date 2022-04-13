@@ -21,7 +21,7 @@ StateError.displayName = 'StateError';
 const StateNoData: React.FC = (props) => <>{props.children}</>;
 StateNoData.displayName = 'StateNoData';
 
-export class LoadingState extends React.Component<LoadingStateProps, undefined> {
+export class LoadingState extends React.Component<LoadingStateProps, any> {
   static defaultProps = {
     data: true,
     enableActivityIndicator: true,
