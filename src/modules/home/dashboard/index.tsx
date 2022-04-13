@@ -10,7 +10,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -21,9 +20,9 @@ import { LoadingState } from "../../../components/loading-state";
 import { useGetPorfolioWeights } from "../../common/hooks/use-get-portfolio-weights.hook";
 import { walletData } from "./dashboard-data";
 
-export const HomePage = () => {
-  const [fetchData, dataResult] = useGetPorfolioData();
-  const [fetchWeights, weightsResult] = useGetPorfolioWeights();
+export const HomePage = ({currentWallet, setWallet}: any) => {
+  const [fetchData, dataResult] = useGetPorfolioData(currentWallet);
+  const [fetchWeights, weightsResult] = useGetPorfolioWeights(currentWallet);
 
   useEffect(() => {
     fetchData();
@@ -56,13 +55,14 @@ export const HomePage = () => {
                 },
               ]}
               layout={{
-                title: "Retorno cumulativo da carteira",
+                title: "Rentabilidade da carteira",
                 yaxis: {
                   tickformat: ",.0%",
-                  range: [0, 2],
                   autorange: true,
                 },
               }}
+              useResizeHandler
+              style={{width: "100%", height: "100%"}}
             />
           </LoadingState>
         </Card>
@@ -77,6 +77,8 @@ export const HomePage = () => {
                 },
               ]}
               layout={{ title: "Evolução patrimonial (R$)" }}
+              useResizeHandler
+              style={{width: "100%", height: "100%"}}
             />
           </LoadingState>
         </Card>
@@ -98,6 +100,8 @@ export const HomePage = () => {
                   autorange: true,
                 },
               }}
+              useResizeHandler
+              style={{width: "100%", height: "100%"}}
             />
           </LoadingState>
         </Card>
@@ -121,6 +125,8 @@ export const HomePage = () => {
                   autorange: true,
                 },
               }}
+              useResizeHandler
+              style={{width: "100%", height: "100%"}}
             />
           </LoadingState>
         </Card>
@@ -138,8 +144,8 @@ export const HomePage = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {walletHistory.map((item: any) => (
-                  <Tr>
+                {walletHistory.map((item: any, index) => (
+                  <Tr key={index}>
                     <Td>{item.asset_name}</Td>
                     <Td>{item.Date}</Td>
                     <Td isNumeric>{item.value}</Td>
