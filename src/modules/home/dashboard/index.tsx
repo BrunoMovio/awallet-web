@@ -37,7 +37,7 @@ export const HomePage = ({currentWallet, setWallet}: any) => {
 
   const idealWeightsData = weightsResult.data?.ideal_weights?.data?.[0];
 
-  const walletHistory = walletData.data;
+  const walletHistory = currentWallet.data;
 
   return (
     <PageContainer>
@@ -144,7 +144,7 @@ export const HomePage = ({currentWallet, setWallet}: any) => {
                 </Tr>
               </Thead>
               <Tbody>
-                {walletHistory.map((item: any, index) => (
+                {walletHistory.map((item: any, index: number) => (
                   <Tr key={index}>
                     <Td>{item.asset_name}</Td>
                     <Td>{item.Date}</Td>

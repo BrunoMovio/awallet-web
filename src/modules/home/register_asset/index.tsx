@@ -77,7 +77,7 @@ export const WalletPage = ({currentWallet, setWallet}: any) => {
                 type="text"
                 onChange={changeDate}
             />
-            Nome:
+            Valor:
             <Input
                 placeholder="Valor adquirido"
                 type="number"
