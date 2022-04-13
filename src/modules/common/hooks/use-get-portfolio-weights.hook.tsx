@@ -1,20 +1,20 @@
 import { useState, useCallback } from "react";
-import { getPortfolioData } from "../../../data/http/portfolio.datasource";
+import { getPortfolioWeights } from "../../../data/http/portfolio.datasource";
 
-type UseGetPortolioData = [() => void, { loading: boolean, data: any }];
+type UseGetPortolioWeights = [() => void, { loading: boolean, data: any }];
 
-export const useGetPorfolioData = (): UseGetPortolioData => {
+export const useGetPorfolioWeights = (): UseGetPortolioWeights => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
 
   const fetch = useCallback(() => {
     setLoading(true);
-    getPortfolioData()
+    getPortfolioWeights()
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, [getPortfolioData]);
+  }, [getPortfolioWeights]);
 
   return [fetch, { loading, data }];
 };
